@@ -1,0 +1,44 @@
+﻿<Window x:Class ="PUBS.MainWindow"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     xmlns:local="clr-namespace:PUBS"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+     mc:Ignorable="d" 
+     d:DesignHeight="679" d:DesignWidth="1100"
+     Title = "PUBS" Height="679" Width="1100"  ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <materialDesign:Card Height="536" Margin="353,84,22,0" Background="White" />
+        <materialDesign:Card Height="536" Margin="25,84,786,0" Background="White" />
+        <ListBox x:Name="authors" HorizontalAlignment="Left" Height="426" Margin="43,163,0,0" VerticalAlignment="Top" Width="247" MouseLeftButtonUp="authors_MouseLeftButtonUp">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Delete" Width="150" Height="27" Click="MenuItemDelete_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+        <DataGrid Name="titles" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="143" VerticalAlignment="Top" Width="637" Margin="395,130,0,0" IsReadOnly="True" HorizontalGridLinesBrush="White" GridLinesVisibility="None" MouseLeftButtonUp="titles_MouseLeftButtonUp" />
+        <Label x:Name="description" Content="" HorizontalAlignment="Left" Margin="395,519,0,0" VerticalAlignment="Top" Height="70" Width="637"/>
+        <DataGrid x:Name="sales" HorizontalAlignment="Left" Height="150" Margin="395,320,0,0" VerticalAlignment="Top" Width="637" IsReadOnly="True" GridLinesVisibility="None"/>
+        <Label Content="Description" Margin="395,490,475,58" FontSize="18" />
+        <Label Content="Authors" Margin="94,109,814,439" FontSize="18" />
+        <Label Content="Titles" Margin="689,94,219,454" FontSize="18" />
+        <Label Content="Sales" Margin="689,284,219,264" FontSize="18" />
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Content="+" HorizontalAlignment="Left" Margin="200,104,0,0" VerticalAlignment="Top" Width="40" Background="#43A047" BorderBrush="#43A047" FontSize="20" Click="add_Click"/>
+        <materialDesign:ColorZone Mode="Inverted" Padding="16" Background="#43A047" Height="52" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="Сaption" VerticalAlignment="Center" Margin="16 0 0 0" FontSize="16"><Run Text="AuthorsTitles" Foreground="#FFFAFAFA"/></TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+    </Grid>
+</Window>
