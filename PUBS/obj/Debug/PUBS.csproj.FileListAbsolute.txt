@@ -24,5 +24,4 @@ C:\Users\Vladimir\source\repos\PUBS\PUBS\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Users\Vladimir\source\repos\PUBS\PUBS\bin\Debug\MaterialDesignColors.pdb
 C:\Users\Vladimir\source\repos\PUBS\PUBS\bin\Debug\ShowMeTheXAML.dll
 C:\Users\Vladimir\source\repos\PUBS\PUBS\obj\Debug\App.baml
-C:\Users\Vladimir\source\repos\PUBS\PUBS\obj\Debug\Add.g.cs
-C:\Users\Vladimir\source\repos\PUBS\PUBS\obj\Debug\Add.baml
+C:\Users\Vladimir\source\repos\PUBS\PUBS\obj\Debug\GeneratedInternalTypeHelper.g.cs

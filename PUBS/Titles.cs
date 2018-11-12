@@ -8,7 +8,7 @@ namespace PUBS
 {
     class Titles
     {
-        public Titles(string Title, string Type, string Price, string Advance, string Royalty, string Sales, string Date)
+        /*public Titles(string Title, string Type, string Price, string Advance, string Royalty, string Sales, string Date)
         {
             this.Title = Title;
             this.Type = Type;
@@ -24,6 +24,6 @@ namespace PUBS
         public string Advance { get; set; }
         public string Royalty { get; set; }
         public string Sales { get; set; }
-        public string Date { get; set; }
+        public string Date { get; set; }*/
     }
 }

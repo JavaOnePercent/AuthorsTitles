@@ -13,32 +13,64 @@
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
      mc:Ignorable="d" 
-     d:DesignHeight="679" d:DesignWidth="1100"
-     Title = "PUBS" Height="679" Width="1100"  ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+     d:DesignHeight="802" d:DesignWidth="1300"
+     Title = "PUBS" Height="802" Width="1300"  ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
-        <materialDesign:Card Height="536" Margin="353,84,22,0" Background="White" />
-        <materialDesign:Card Height="536" Margin="25,84,786,0" Background="White" />
-        <ListBox x:Name="authors" HorizontalAlignment="Left" Height="426" Margin="43,163,0,0" VerticalAlignment="Top" Width="247" MouseLeftButtonUp="authors_MouseLeftButtonUp">
+        <materialDesign:Card Height="245" Margin="353,84,22,0" Background="White" />
+        <materialDesign:Card Height="657" Margin="25,84,986,0" Background="White" />
+        <materialDesign:Card Height="245" Margin="353,352,22,0" Background="White" />
+        <materialDesign:Card Height="121" Margin="353,620,22,0" Background="White" />
+        <ListBox x:Name="authors" HorizontalAlignment="Left" Height="557" Margin="43,163,0,0" VerticalAlignment="Top" Width="247" Cursor="Hand" MouseLeftButtonUp="authors_MouseLeftButtonUp">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Delete" Width="150" Height="27" Click="MenuItemDelete_Click"/>
+                    <MenuItem Header="View" Width="150" Height="27" Cursor="Hand" Click="MenuItemView_Click"/>
+                    <MenuItem Header="Update" Width="150" Height="27" Cursor="Hand" Click="MenuItemUpdate_Click"/>
+                    <MenuItem Header="Delete" Width="150" Height="27" Cursor="Hand" Click="MenuItemDelete_Click"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
-        <DataGrid Name="titles" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="143" VerticalAlignment="Top" Width="637" Margin="395,130,0,0" IsReadOnly="True" HorizontalGridLinesBrush="White" GridLinesVisibility="None" MouseLeftButtonUp="titles_MouseLeftButtonUp" />
-        <Label x:Name="description" Content="" HorizontalAlignment="Left" Margin="395,519,0,0" VerticalAlignment="Top" Height="70" Width="637"/>
-        <DataGrid x:Name="sales" HorizontalAlignment="Left" Height="150" Margin="395,320,0,0" VerticalAlignment="Top" Width="637" IsReadOnly="True" GridLinesVisibility="None"/>
-        <Label Content="Description" Margin="395,490,475,58" FontSize="18" />
-        <Label Content="Authors" Margin="94,109,814,439" FontSize="18" />
-        <Label Content="Titles" Margin="689,94,219,454" FontSize="18" />
-        <Label Content="Sales" Margin="689,284,219,264" FontSize="18" />
-        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Content="+" HorizontalAlignment="Left" Margin="200,104,0,0" VerticalAlignment="Top" Width="40" Background="#43A047" BorderBrush="#43A047" FontSize="20" Click="add_Click"/>
+        <DataGrid Name="titles" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="143" VerticalAlignment="Top" Width="843" Margin="395,160,0,0" IsReadOnly="True" HorizontalGridLinesBrush="White" GridLinesVisibility="None" MouseLeftButtonUp="titles_MouseLeftButtonUp" />
+        <Label x:Name="description" Content="" HorizontalAlignment="Left" Margin="379,678,0,0" VerticalAlignment="Top" Height="42" Width="859"/>
+        <DataGrid x:Name="sales" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="150" Margin="395,421,0,0" VerticalAlignment="Top" Width="843" IsReadOnly="True" GridLinesVisibility="None"/>
+        <Label Content="Description" Margin="379,640,733,74" FontSize="18" />
+        <Label x:Name="authorsLabel" Content="Authors" Margin="127,109,977,554" FontSize="18" />
+        <Label x:Name="newAuthorLabel" Content="New author" Margin="110,109,856,475" FontSize="18" Visibility="Collapsed"/>
+        <Label x:Name="updateAuthorLabel" Content="Update author" Margin="100,109,818,475" FontSize="18" Visibility="Collapsed"/>
+        <Label x:Name="viewAuthorLabel" Content="" Margin="105,100,818,475" FontSize="18" Visibility="Collapsed"/>
+        <Label Content="Titles" Margin="787,109,121,457" FontSize="18" />
+        <Label Content="Sales" Margin="787,370,327,357" FontSize="18" />
+        <Button x:Name="backButton" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Content="←" HorizontalAlignment="Left" Margin="48,104,0,0" VerticalAlignment="Top" Width="40" Background="#43A047" BorderBrush="#43A047" FontSize="20" Cursor="Hand" Click="back_Click" Visibility="Collapsed"/>
+        <Button x:Name="addButton" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Content="+" HorizontalAlignment="Left" Margin="236,104,0,0" VerticalAlignment="Top" Width="40" Background="#43A047" BorderBrush="#43A047" FontSize="20" Cursor="Hand" Click="add_Click"/>
+        <Button x:Name="updateButton" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Content="✓" HorizontalAlignment="Left" Margin="236,104,0,0" VerticalAlignment="Top" Width="40" Background="#43A047" BorderBrush="#43A047" FontSize="20" Cursor="Hand" Click="update_Click" Visibility="Collapsed"/>
+
         <materialDesign:ColorZone Mode="Inverted" Padding="16" Background="#43A047" Height="52" materialDesign:ShadowAssist.ShadowDepth="Depth2">
             <DockPanel>
+                <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" Width="28" Margin="0,-4" Height="28" Cursor="Hand">
+                    <Menu>
+                        <MenuItem Header="Выйти" Click="MenuExit_Click" Height="30" Width="125" Cursor="Hand" />
+                    </Menu>
+                </materialDesign:PopupBox>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Name="Сaption" VerticalAlignment="Center" Margin="16 0 0 0" FontSize="16"><Run Text="AuthorsTitles" Foreground="#FFFAFAFA"/></TextBlock>
                 </StackPanel>
             </DockPanel>
         </materialDesign:ColorZone>
+        <StackPanel x:Name="authorsPanel" HorizontalAlignment="Left" Height="396" Margin="25,175,0,0" VerticalAlignment="Top" Width="283" Visibility="Collapsed">
+            <Label Content="Name*" Margin="40,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <TextBox x:Name="name" HorizontalAlignment="Left" Height="23" Margin="110,-25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" CaretBrush="#FF43A047" MaxLength="40"/>
+            <Label Content="Surname*" Margin="40,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <TextBox x:Name="surname" HorizontalAlignment="Left" Height="23" Margin="110,-25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" CaretBrush="#FF43A047" MaxLength="20"/>
+            <Label Content="Phone" HorizontalAlignment="Left" Margin="40,15,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="phone" HorizontalAlignment="Left" Height="23" Margin="110,-25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" CaretBrush="#FF43A047" MaxLength="12" KeyDown="phone_KeyDown"/>
+            <Label Content="Address" HorizontalAlignment="Left" Margin="40,15,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="address" HorizontalAlignment="Left" Height="23" Margin="110,-25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" CaretBrush="#FF43A047" MaxLength="40"/>
+            <Label Content="City" HorizontalAlignment="Left" Margin="40,15,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="city" HorizontalAlignment="Left" Height="23" Margin="110,-25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" CaretBrush="#FF43A047" MaxLength="20"/>
+            <Label Content="State" HorizontalAlignment="Left" Margin="40,15,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="state" HorizontalAlignment="Left" Height="23" Margin="110,-25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" CaretBrush="#FF43A047" MaxLength="2"/>
+            <Label Content="Zip" HorizontalAlignment="Left" Margin="40,15,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="zip" HorizontalAlignment="Left" Height="23" Margin="110,-25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" CaretBrush="#FF43A047" MaxLength="5" KeyDown="zip_KeyDown"/>
+            <Label x:Name="message" HorizontalAlignment="Left" Margin="5,30,0,0" VerticalAlignment="Top" Height="28" Width="272" Foreground="#FFE51400"/>
+        </StackPanel>
     </Grid>
 </Window>

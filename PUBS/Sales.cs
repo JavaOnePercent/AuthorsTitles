@@ -8,12 +8,12 @@ namespace PUBS
 {
     class Sales
     {
-        public Sales(string Date, string Quantity)
+        /*public Sales(string Date, string Quantity)
         {
             this.Date = Date;
             this.Quantity = Quantity;
         }
         public string Date { get; set; }
-        public string Quantity { get; set; }
+        public string Quantity { get; set; }*/
     }
 }
