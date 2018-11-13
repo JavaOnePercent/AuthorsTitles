@@ -59,7 +59,12 @@ namespace PUBS
             description.Content = "";
             string[] names = authors.SelectedItem.ToString().Split(' ');
             dbClass.deleteAuthorById(names[2]);
-            init_authors();
+            authors.Items.RemoveAt(authors.SelectedIndex);
+            if (viewAuthorLabel.Visibility == Visibility.Visible)
+            {
+                viewAuthorLabel.Visibility = Visibility.Collapsed;
+                authorsLabel.Visibility = Visibility.Visible;
+            }
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
@@ -115,7 +120,10 @@ namespace PUBS
 
             Authors author = new Authors(key, name.Text, surname.Text, cur_phone, cur_address, cur_city, cur_state, cur_zip);
             dbClass.addAuthor(author);
-           
+
+            authors.Items.Add(name.Text + " " + surname.Text + " " + key);
+
+
             authors.Visibility = Visibility.Visible;
             authorsLabel.Visibility = Visibility.Visible;
             authorsPanel.Visibility = Visibility.Collapsed;
@@ -130,9 +138,6 @@ namespace PUBS
             state.Text = "";
             zip.Text = "";
             message.Content = "";
-
-            init_authors();
-
         }
 
         public void init_authors()
@@ -284,6 +289,10 @@ namespace PUBS
             Authors author = new Authors(name.Text, surname.Text, cur_phone, cur_address, cur_city, cur_state, cur_zip);
             dbClass.updateAuthorById(author, names[2]);
 
+            int index = authors.SelectedIndex;
+            authors.Items.RemoveAt(index);
+            authors.Items.Insert(index, name.Text + " " + surname.Text + " " + names[2]);
+
             authors.Visibility = Visibility.Visible;
             authorsLabel.Visibility = Visibility.Visible;
             addButton.Visibility = Visibility.Visible;
@@ -300,8 +309,6 @@ namespace PUBS
             state.Text = "";
             zip.Text = "";
             message.Content = "";
-
-            init_authors();
         }
 
         private void MenuItemView_Click(object sender, RoutedEventArgs e)
